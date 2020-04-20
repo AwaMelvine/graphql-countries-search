@@ -1,17 +1,25 @@
 import { REMOVE_COUNTRY, SET_NEW_COUNTRY } from './types';
 
-const initialState = [];
-
-export const countriesReducer = (state = initialState, action) => {
+export const countriesReducer = (state, action) => {
   switch (action.type) {
     case SET_NEW_COUNTRY:
-      const existingCountryCodes = state.map((ctry) => ctry.code);
+      const existingCountryCodes = state.searchedCountries.map(
+        (ctry) => ctry.code
+      );
       if (existingCountryCodes.includes(action.payload.code)) {
         return state;
       }
-      return [action.payload, ...state];
+      return {
+        ...state,
+        searchedCountries: [action.payload, ...state.searchedCountries],
+      };
     case REMOVE_COUNTRY:
-      return state.filter((country) => country.code !== action.payload);
+      return {
+        ...state,
+        searchedCountries: state.searchedCountries.filter(
+          (country) => country.code !== action.payload
+        ),
+      };
     default:
       return;
   }

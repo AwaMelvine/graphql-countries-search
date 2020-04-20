@@ -9,7 +9,7 @@ import { CountriesWrapper, StyledLoading } from './styles';
 const CountryList = ({ loading }) => {
   const { countries } = useContext(CountriesContext);
 
-  if (countries.length === 0) {
+  if (countries.searchedCountries.length === 0) {
     return (
       <CountriesWrapper>
         <p>No Countries yet. </p>
@@ -24,8 +24,8 @@ const CountryList = ({ loading }) => {
           <img src={LoadingImg} alt='Loading Indicator' />
         </StyledLoading>
       )}
-      {countries.length > 0 &&
-        countries.map((country) => (
+      {countries.searchedCountries.length > 0 &&
+        countries.searchedCountries.map((country) => (
           <Country country={country} key={country.code} />
         ))}
     </CountriesWrapper>

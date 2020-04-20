@@ -23,7 +23,9 @@ const SearchWrapper = styled.div`
 const SearchCountries = () => {
   const [search, { called, loading, data }] = useLazyQuery(SEARCH_COUNTRIES);
 
-  const [countries, dispatch] = useReducer(countriesReducer, []);
+  const [countries, dispatch] = useReducer(countriesReducer, {
+    searchedCountries: [],
+  });
 
   const handleSearchCountries = (code) => {
     search({ variables: { code } });
