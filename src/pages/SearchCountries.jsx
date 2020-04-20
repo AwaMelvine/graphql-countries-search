@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useLazyQuery } from '@apollo/react-hooks';
 
@@ -14,19 +14,27 @@ const SearchWrapper = styled.div`
   min-height: 200px;
 `;
 
-const SearchCountries = (code) => {
+const SearchCountries = () => {
+  const [countries, setCountries] = useState([]);
   const [search, { called, loading, data }] = useLazyQuery(SEARCH_COUNTRIES);
 
-  const handleSearchCountries = (code) => search({ variables: { code } });
+  const handleSearchCountries = (code) => {
+    search({ variables: { code } });
+  };
 
-  if (called && loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (called && !loading) {
+      setCountries((countries) => countries.concat(data.countries));
+    }
+  }, [data, loading, called]);
 
   return (
     <SearchWrapper>
-      <SearchForm handleSearchCountries={handleSearchCountries} />
-      <CountryList />
+      <SearchForm
+        loading={called && loading}
+        handleSearchCountries={handleSearchCountries}
+      />
+      <CountryList countries={countries} />
     </SearchWrapper>
   );
 };

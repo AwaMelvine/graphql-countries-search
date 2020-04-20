@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const SearchFormWrapper = styled.form`
+const SearchFormWrapper = styled.div`
   border: 1px dashed green;
   padding: 30px;
   display: flex;
@@ -9,7 +9,7 @@ const SearchFormWrapper = styled.form`
   justify-content: center;
 `;
 
-const SearchForm = ({ handleSearchCountries }) => {
+const SearchForm = ({ handleSearchCountries, loading }) => {
   const [code, setCode] = useState('');
 
   const handleChange = (e) => setCode(e.target.value);
@@ -22,10 +22,13 @@ const SearchForm = ({ handleSearchCountries }) => {
 
   return (
     <SearchFormWrapper>
-      <input type='text' name='code' value={code} onChange={handleChange} />
-      <button type='submit' onClick={handleSubmit}>
-        Search
-      </button>
+      <form action='' method='post'>
+        <input type='text' name='code' value={code} onChange={handleChange} />
+        <button type='submit' onClick={handleSubmit}>
+          Search
+        </button>
+      </form>
+      {loading && <p>Loading</p>}
     </SearchFormWrapper>
   );
 };

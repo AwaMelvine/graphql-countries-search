@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CountryList() {
+const CountryList = (props) => {
   return (
     <div className='countries'>
       <div className='country'>
@@ -14,5 +14,5 @@ function CountryList() {
       </div>
     </div>
   );
-}
+};
 export default CountryList;
