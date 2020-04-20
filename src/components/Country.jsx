@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+
 import { CountriesContext } from '../pages/SearchCountries';
 import { removeCountry } from '../context/countriesActions';
+import { ReactComponent as Trash } from '../assets/icons/trash.svg';
 
 const StyledCountry = styled.div`
   background-color: lemonchiffon;
@@ -24,6 +26,8 @@ const CancelBtnStyled = styled.button`
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.15s ease-in-out;
+  background: transparent;
+  border: none;
 `;
 
 const Country = ({ country }) => {
@@ -35,7 +39,7 @@ const Country = ({ country }) => {
         className='btn'
         onClick={() => dispatch(removeCountry(country.code))}
       >
-        x
+        <Trash fill='red' />
       </CancelBtnStyled>
       <h3 className='name'>
         {country.name} &nbsp;
