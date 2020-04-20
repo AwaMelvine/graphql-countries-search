@@ -1,7 +1,7 @@
-import { SET_NEW_COUNTRIES, REMOVE_COUNTRY } from './types';
+import { SET_NEW_COUNTRY, REMOVE_COUNTRY } from './types';
 
-export const setNewCountries = (countries) => ({
-  type: SET_NEW_COUNTRIES,
+export const setNewCountry = (countries) => ({
+  type: SET_NEW_COUNTRY,
   payload: countries,
 });
 

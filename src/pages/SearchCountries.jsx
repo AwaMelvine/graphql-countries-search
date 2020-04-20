@@ -6,7 +6,7 @@ import SearchForm from '../components/SearchForm';
 import CountryList from '../components/CountryList';
 import { SEARCH_COUNTRIES } from '../graphql/queries';
 import { countriesReducer } from '../context/countriesReducer';
-import { setNewCountries } from '../context/countriesActions';
+import { setNewCountry } from '../context/countriesActions';
 
 export const CountriesContext = createContext();
 
@@ -27,8 +27,8 @@ const SearchCountries = () => {
   };
 
   useEffect(() => {
-    if (called && !loading) {
-      dispatch(setNewCountries(data.countries));
+    if (called && !loading && data.countries.length > 0) {
+      dispatch(setNewCountry(data.countries[0]));
     }
   }, [data, loading, called]);
 
