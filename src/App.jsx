@@ -12,24 +12,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const GET_COUNTRIES = gql`
-  {
-    country(filter: {code: "NG"}) {
-      name
-      phone
-    }
-  }
-`;
-
-client
-  .query({
-    query: GET_COUNTRIES,
-  })
-  .then((res) => {
-    console.log('GrahpQl response', res);
-  })
-  .catch((err) => console.log(err));
-
 function App() {
   return (
     <ApolloProvider client={client}>
