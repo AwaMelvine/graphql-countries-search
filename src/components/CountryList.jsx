@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Country from './Country';
 import { CountriesContext } from '../pages/SearchCountries';
+import LoadingImg from '../assets/loading.gif';
 
 const CountriesWrapper = styled.div`
   border-radius: 6px;
@@ -22,7 +23,18 @@ const CountriesWrapper = styled.div`
   }
 `;
 
-const CountryList = () => {
+const StyledLoading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
+const CountryList = ({ loading }) => {
   const { countries } = useContext(CountriesContext);
 
   if (countries.length === 0) {
@@ -35,6 +47,11 @@ const CountryList = () => {
 
   return (
     <CountriesWrapper>
+      {loading && (
+        <StyledLoading>
+          <img src={LoadingImg} alt='Loading Indicator' />
+        </StyledLoading>
+      )}
       {countries.length > 0 &&
         countries.map((country) => (
           <Country country={country} key={country.code} />

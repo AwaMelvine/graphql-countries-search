@@ -42,7 +42,7 @@ const SearchCountries = () => {
         handleSearchCountries={handleSearchCountries}
       />
       <CountriesContext.Provider value={{ countries, dispatch }}>
-        <CountryList />
+        <CountryList loading={called && loading} />
       </CountriesContext.Provider>
     </SearchWrapper>
   );
