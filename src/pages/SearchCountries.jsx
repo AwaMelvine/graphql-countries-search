@@ -14,6 +14,10 @@ const SearchWrapper = styled.div`
   width: 60%;
   margin: 50px auto;
   min-height: 200px;
+
+  @media (max-width: 768px) {
+    width: 98%;
+  }
 `;
 
 const SearchCountries = () => {

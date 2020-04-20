@@ -12,6 +12,14 @@ const CountriesWrapper = styled.div`
   grid-column-gap: 30px;
   grid-row-gap: 30px;
   background: white;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const CountryList = () => {

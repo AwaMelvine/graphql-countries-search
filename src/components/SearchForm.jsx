@@ -8,6 +8,32 @@ const SearchFormWrapper = styled.div`
   justify-content: center;
 `;
 
+const StyledSearchBtn = styled.button`
+  cursor: pointer;
+  display: inline-block;
+  min-height: 1em;
+  border: none;
+  background: #42818e;
+  border: 1px solid #42818e;
+  color: white;
+  margin: 0 0.25em 0 0;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+  text-decoration: none;
+`;
+
+const StyledSearchInput = styled.input`
+  margin: 0;
+  max-width: 100%;
+  outline: 0;
+  text-align: left;
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+`;
+
 const SearchForm = ({ handleSearchCountries, loading }) => {
   const [code, setCode] = useState('');
 
@@ -22,10 +48,20 @@ const SearchForm = ({ handleSearchCountries, loading }) => {
   return (
     <SearchFormWrapper>
       <form action='' method='post'>
-        <input type='text' name='code' value={code} onChange={handleChange} />
-        <button type='submit' onClick={handleSubmit}>
-          {loading ? 'Loading' : 'Search'}
-        </button>
+        <StyledSearchInput
+          placeholder='Search country by code'
+          type='text'
+          name='code'
+          value={code}
+          onChange={handleChange}
+        />
+        <StyledSearchBtn
+          type='submit'
+          disabled={loading}
+          onClick={handleSubmit}
+        >
+          {loading ? 'Loading...' : 'Search'}
+        </StyledSearchBtn>
       </form>
     </SearchFormWrapper>
   );
