@@ -11,8 +11,7 @@ import { setNewCountry } from '../context/countriesActions';
 export const CountriesContext = createContext();
 
 const SearchWrapper = styled.div`
-  border: 1px solid red;
-  width: 80%;
+  width: 60%;
   margin: 50px auto;
   min-height: 200px;
 `;

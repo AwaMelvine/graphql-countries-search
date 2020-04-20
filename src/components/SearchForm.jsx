@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SearchFormWrapper = styled.div`
-  border: 1px dashed green;
   padding: 30px;
   display: flex;
   align-items: center;

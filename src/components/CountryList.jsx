@@ -5,16 +5,25 @@ import Country from './Country';
 import { CountriesContext } from '../pages/SearchCountries';
 
 const CountriesWrapper = styled.div`
-  border: 2px dashed red;
+  border-radius: 6px;
   padding: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 30px;
   grid-row-gap: 30px;
+  background: white;
 `;
 
 const CountryList = () => {
   const { countries } = useContext(CountriesContext);
+
+  if (countries.length === 0) {
+    return (
+      <CountriesWrapper>
+        <p>No Countries yet. </p>
+      </CountriesWrapper>
+    );
+  }
 
   return (
     <CountriesWrapper>
