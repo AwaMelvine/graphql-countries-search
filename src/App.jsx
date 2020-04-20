@@ -1,5 +1,5 @@
 import React from 'react';
-import { gql, ApolloClient } from 'apollo-boost';
+import { ApolloClient } from 'apollo-boost';
 import SearchCountries from './pages/SearchCountries';
 import { createHttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
