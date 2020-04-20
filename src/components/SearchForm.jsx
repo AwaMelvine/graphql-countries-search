@@ -5,9 +5,15 @@ import {
   StyledSearchBtn,
   StyledSearchInput,
 } from './styles';
+import { FETCH_COUNTRIES } from '../graphql/queries';
+import { useQuery } from 'react-apollo';
 
-const SearchForm = ({ handleSearchCountries, allCountries, loading }) => {
+const SearchForm = ({ handleSearchCountries, loading }) => {
   const [code, setCode] = useState('');
+
+  const { loading: loadingCountries, data: allCountries } = useQuery(
+    FETCH_COUNTRIES
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +32,7 @@ const SearchForm = ({ handleSearchCountries, allCountries, loading }) => {
         >
           <option value=''>Search for country</option>
           {allCountries &&
-            allCountries.map((ctry) => (
+            allCountries.countries.map((ctry) => (
               <option key={ctry.code} value={ctry.code}>
                 {ctry.name} - ({ctry.code})
               </option>

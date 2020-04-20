@@ -22,9 +22,10 @@ export const StyledLoading = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 
   img {
-    height: 100%;
+    height: 50%;
     width: 100%;
   }
 `;
