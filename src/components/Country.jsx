@@ -38,7 +38,10 @@ const Country = ({ country }) => {
         x
       </CancelBtnStyled>
       <h3 className='name'>
-        {country.name} ({country.code})
+        {country.name} &nbsp;
+        <span role='img' aria-label={`${country.name} Flag`}>
+          {country.emoji}
+        </span>
       </h3>
       <p>{country.continent.name}</p>
     </StyledCountry>
