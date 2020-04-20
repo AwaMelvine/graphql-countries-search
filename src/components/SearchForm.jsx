@@ -43,7 +43,7 @@ const SearchForm = ({ handleSearchCountries, loading }) => {
           disabled={loading}
           onClick={handleSubmit}
         >
-          {loading ? 'Loading...' : 'Search'}
+          {loading ? 'Loading...' : 'Add'}
         </StyledSearchBtn>
       </form>
     </SearchFormWrapper>
