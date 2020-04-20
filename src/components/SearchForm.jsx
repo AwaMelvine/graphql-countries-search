@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SearchFormWrapper = styled.header`
@@ -10,9 +10,13 @@ const SearchFormWrapper = styled.header`
 `;
 
 const SearchForm = () => {
+  const [code, setCode] = useState('');
+
+  const handleChange = (e) => setCode(e.target.value);
+
   return (
     <SearchFormWrapper>
-      <input type='text' name='searchTerm' />
+      <input type='text' name='code' value={code} onChange={handleChange} />
       <button type='submit'>Search</button>
     </SearchFormWrapper>
   );
