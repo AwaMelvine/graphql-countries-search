@@ -6,10 +6,8 @@ import {
   StyledSearchInput,
 } from './styles';
 
-const SearchForm = ({ handleSearchCountries, loading }) => {
+const SearchForm = ({ handleSearchCountries, allCountries, loading }) => {
   const [code, setCode] = useState('');
-
-  const handleChange = (e) => setCode(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,12 +19,19 @@ const SearchForm = ({ handleSearchCountries, loading }) => {
     <SearchFormWrapper>
       <form action='' method='post'>
         <StyledSearchInput
-          placeholder='Search country by code'
-          type='text'
           name='code'
-          value={code}
-          onChange={handleChange}
-        />
+          onChange={(e) => {
+            setCode(e.target.value);
+          }}
+        >
+          <option value=''>Search for country</option>
+          {allCountries &&
+            allCountries.map((ctry) => (
+              <option key={ctry.code} value={ctry.code}>
+                {ctry.name} - ({ctry.code})
+              </option>
+            ))}
+        </StyledSearchInput>
         <StyledSearchBtn
           type='submit'
           disabled={loading}

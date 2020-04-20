@@ -7,18 +7,27 @@ export const SEARCH_COUNTRIES = gql`
       name
       native
       continent {
-          code
-          name
+        code
+        name
       }
       states {
-          code
-          name
+        code
+        name
       }
       phone
       capital
       currency
       emoji
       emojiU
+    }
+  }
+`;
+
+export const FETCH_COUNTRIES = gql`
+  {
+    countries {
+      code
+      name
     }
   }
 `;

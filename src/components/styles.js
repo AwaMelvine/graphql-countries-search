@@ -53,7 +53,8 @@ export const StyledSearchBtn = styled.button`
   text-decoration: none;
 `;
 
-export const StyledSearchInput = styled.input`
+export const StyledSearchInput = styled.select`
+  height: 47px;
   margin: 0;
   max-width: 100%;
   outline: 0;
