@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { CountriesContext } from '../pages/SearchCountries';
+import { removeCountry } from '../context/countriesActions';
 
 const StyledCountry = styled.div`
   background-color: lemonchiffon;
@@ -8,14 +10,14 @@ const StyledCountry = styled.div`
   position: relative;
 
   &:hover {
-    span.btn {
+    button.btn {
       opacity: 1;
       transition: opacity 0.15s ease-in-out;
     }
   }
 `;
 
-const CancelBtnStyled = styled.span`
+const CancelBtnStyled = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
@@ -25,9 +27,16 @@ const CancelBtnStyled = styled.span`
 `;
 
 const Country = ({ country }) => {
+  const { dispatch } = useContext(CountriesContext);
+
   return (
     <StyledCountry>
-      <CancelBtnStyled className='btn'>x</CancelBtnStyled>
+      <CancelBtnStyled
+        className='btn'
+        onClick={() => dispatch(removeCountry(country.code))}
+      >
+        x
+      </CancelBtnStyled>
       <h3 className='name'>
         {country.name} ({country.code})
       </h3>
