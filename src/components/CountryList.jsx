@@ -1,17 +1,12 @@
 import React from 'react';
+import Country from './Country';
 
 const CountryList = (props) => {
   return (
     <div className='countries'>
-      <div className='country'>
-        <p className='name'>Nigeria</p>
-      </div>
-      <div className='country'>
-        <p className='name'>Ghana</p>
-      </div>
-      <div className='country'>
-        <p className='name'>Cameroon</p>
-      </div>
+      {props.countries.map((country) => (
+        <Country country={country} key={country.code} />
+      ))}
     </div>
   );
 };

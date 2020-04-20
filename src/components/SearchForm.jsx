@@ -25,10 +25,9 @@ const SearchForm = ({ handleSearchCountries, loading }) => {
       <form action='' method='post'>
         <input type='text' name='code' value={code} onChange={handleChange} />
         <button type='submit' onClick={handleSubmit}>
-          Search
+          {loading ? 'Loading' : 'Search'}
         </button>
       </form>
-      {loading && <p>Loading</p>}
     </SearchFormWrapper>
   );
 };

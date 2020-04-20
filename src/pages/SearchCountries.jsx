@@ -24,7 +24,7 @@ const SearchCountries = () => {
 
   useEffect(() => {
     if (called && !loading) {
-      setCountries((countries) => countries.concat(data.countries));
+      setCountries((countries) => data.countries.concat(countries));
     }
   }, [data, loading, called]);
 
