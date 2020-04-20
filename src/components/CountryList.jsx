@@ -1,17 +1,28 @@
 import React, { useContext } from 'react';
+import styled from 'styled-components';
+
 import Country from './Country';
 import { CountriesContext } from '../pages/SearchCountries';
+
+const CountriesWrapper = styled.div`
+  border: 2px dashed red;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+`;
 
 const CountryList = () => {
   const { countries } = useContext(CountriesContext);
 
   return (
-    <div className='countries'>
+    <CountriesWrapper>
       {countries.length > 0 &&
         countries.map((country) => (
           <Country country={country} key={country.code} />
         ))}
-    </div>
+    </CountriesWrapper>
   );
 };
 export default CountryList;
