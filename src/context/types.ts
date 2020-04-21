@@ -1,0 +1,2 @@
+export const SET_NEW_COUNTRY = 'SET_NEW_COUNTRY';
+export const REMOVE_COUNTRY = 'REMOVE_COUNTRY';
