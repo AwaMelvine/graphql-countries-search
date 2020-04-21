@@ -4,7 +4,7 @@ import { useLazyQuery } from '@apollo/react-hooks';
 
 import SearchForm from '../components/SearchForm';
 import CountryList from '../components/CountryList';
-import { SEARCH_COUNTRIES } from '../graphql/queries';
+import { GET_COUNTRY } from '../graphql/queries';
 import { countriesReducer } from '../context/countriesReducer';
 import { setNewCountry } from '../context/countriesActions';
 
@@ -21,7 +21,7 @@ const SearchWrapper = styled.div`
 `;
 
 const SearchCountries = () => {
-  const [search, { called, loading, data }] = useLazyQuery(SEARCH_COUNTRIES);
+  const [getCountry, { called, loading, data }] = useLazyQuery(GET_COUNTRY);
 
   const [countries, dispatch] = useReducer(countriesReducer, {
     searchedCountries: [],
@@ -29,12 +29,12 @@ const SearchCountries = () => {
   });
 
   const handleSearchCountries = (code) => {
-    search({ variables: { code } });
+    getCountry({ variables: { code } });
   };
 
   useEffect(() => {
-    if (called && !loading && data.countries.length > 0) {
-      dispatch(setNewCountry(data.countries[0]));
+    if (called && !loading && data.country) {
+      dispatch(setNewCountry(data.country));
     }
   }, [data, loading, called]);
 
