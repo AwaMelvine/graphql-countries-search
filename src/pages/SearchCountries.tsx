@@ -8,7 +8,7 @@ import { GET_COUNTRY } from '../graphql/queries';
 import { countriesReducer } from '../context/countriesReducer';
 import { setNewCountry } from '../context/countriesActions';
 
-export const CountriesContext = createContext();
+export const CountriesContext = createContext(null);
 
 const SearchWrapper = styled.div`
   width: 60%;
