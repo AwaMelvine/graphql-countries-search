@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 
-import Country from './Country';
-import { CountriesContext } from '../pages/SearchCountries';
+import Country, { ICountry } from './Country';
+import { CountriesContext, ICountriesContext } from '../pages/SearchCountries';
 import LoadingImg from '../assets/loading.gif';
 
 import { CountriesWrapper, StyledLoading } from './styles';
 
-const CountryList = ({ loading }) => {
-  const { countries } = useContext(CountriesContext);
+const CountryList = ({ loading }: { loading: boolean }) => {
+  const { countries } = useContext<ICountriesContext>(CountriesContext);
 
   if (countries.searchedCountries.length === 0) {
     return (
@@ -25,7 +25,7 @@ const CountryList = ({ loading }) => {
         </StyledLoading>
       )}
       {countries.searchedCountries.length > 0 &&
-        countries.searchedCountries.map((country) => (
+        countries.searchedCountries.map((country: ICountry) => (
           <Country country={country} key={country.code} />
         ))}
     </CountriesWrapper>

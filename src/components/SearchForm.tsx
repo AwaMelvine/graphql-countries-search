@@ -7,15 +7,19 @@ import {
 } from './styles';
 import { FETCH_COUNTRIES } from '../graphql/queries';
 import { useQuery } from 'react-apollo';
+import { ICountry } from './Country';
 
-const SearchForm = ({ handleSearchCountries, loading }) => {
+interface IProps {
+  handleSearchCountries: (code: string) => void;
+  loading: boolean;
+}
+
+const SearchForm = ({ handleSearchCountries, loading }: IProps) => {
   const [code, setCode] = useState('');
 
-  const { loading: loadingCountries, data: allCountries } = useQuery(
-    FETCH_COUNTRIES
-  );
+  const { data: allCountries } = useQuery(FETCH_COUNTRIES);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
     handleSearchCountries(code.toUpperCase());
     setCode('');
@@ -32,7 +36,7 @@ const SearchForm = ({ handleSearchCountries, loading }) => {
         >
           <option value=''>Search for country</option>
           {allCountries &&
-            allCountries.countries.map((ctry) => (
+            allCountries.countries.map((ctry: ICountry) => (
               <option key={ctry.code} value={ctry.code}>
                 {ctry.name} - ({ctry.code})
               </option>

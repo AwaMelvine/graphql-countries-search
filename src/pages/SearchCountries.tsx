@@ -5,10 +5,23 @@ import { useLazyQuery } from '@apollo/react-hooks';
 import SearchForm from '../components/SearchForm';
 import CountryList from '../components/CountryList';
 import { GET_COUNTRY } from '../graphql/queries';
-import { countriesReducer } from '../context/countriesReducer';
+import { countriesReducer, ICountryAction } from '../context/countriesReducer';
 import { setNewCountry } from '../context/countriesActions';
+import { ICountry } from '../components/Country';
+import { ICountryState } from '../context/countriesReducer';
 
-export const CountriesContext = createContext(null);
+export interface ICountriesContext {
+  countries: { searchedCountries: ICountry[]; allCountryCodes: ICountry[] };
+  dispatch: React.Dispatch<any>;
+}
+
+export const CountriesContext = createContext<ICountriesContext>({
+  countries: {
+    searchedCountries: [],
+    allCountryCodes: [],
+  },
+  dispatch: () => null,
+});
 
 const SearchWrapper = styled.div`
   width: 60%;
@@ -23,12 +36,14 @@ const SearchWrapper = styled.div`
 const SearchCountries = () => {
   const [getCountry, { called, loading, data }] = useLazyQuery(GET_COUNTRY);
 
-  const [countries, dispatch] = useReducer(countriesReducer, {
+  const [countries, dispatch] = useReducer<
+    React.Reducer<ICountryState, ICountryAction>
+  >(countriesReducer, {
     searchedCountries: [],
     allCountryCodes: [],
   });
 
-  const handleSearchCountries = (code) => {
+  const handleSearchCountries = (code: string) => {
     getCountry({ variables: { code } });
   };
 

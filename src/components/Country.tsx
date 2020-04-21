@@ -5,7 +5,20 @@ import { removeCountry } from '../context/countriesActions';
 import { ReactComponent as Trash } from '../assets/icons/trash.svg';
 import { StyledCountry, CancelBtnStyled } from './styles';
 
-const Country = ({ country }) => {
+export interface ICountry {
+  code: string;
+  name: string;
+  emoji: string;
+  continent: {
+    name: string;
+  };
+}
+
+interface IProps {
+  country: ICountry;
+}
+
+const Country = ({ country }: IProps) => {
   const { dispatch } = useContext(CountriesContext);
 
   return (

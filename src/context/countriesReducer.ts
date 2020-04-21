@@ -1,6 +1,21 @@
+import React from 'react';
 import { REMOVE_COUNTRY, SET_NEW_COUNTRY } from './types';
+import { ICountry } from '../components/Country';
 
-export const countriesReducer = (state, action) => {
+export interface ICountryState {
+  searchedCountries: ICountry[];
+  allCountryCodes: ICountry[];
+}
+
+export interface ICountryAction {
+  type: string;
+  payload: any;
+}
+
+export const countriesReducer: React.Reducer<ICountryState, ICountryAction> = (
+  state,
+  action
+) => {
   switch (action.type) {
     case SET_NEW_COUNTRY:
       const existingCountryCodes = state.searchedCountries.map(
@@ -17,10 +32,10 @@ export const countriesReducer = (state, action) => {
       return {
         ...state,
         searchedCountries: state.searchedCountries.filter(
-          (country) => country.code !== action.payload
+          (country: ICountry) => country.code !== action.payload
         ),
       };
     default:
-      return;
+      return state;
   }
 };
